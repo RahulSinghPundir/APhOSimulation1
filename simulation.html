@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+   <title>Pipe | HBCSE</title>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <!-- Materialize -->
+   <link rel="stylesheet" href="materialize.min.css" />
+   <script src="materialize.min.js"></script>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!-- Chart JS -->
+   <script src="chart.min.js"></script>
+   <!-- Our Scripts -->
+   <script src="basic.js" defer></script>
+   <script src="user_input.js" defer></script>
+   <script src="Magnet.js" defer></script>
+   <script src="Mobile.js" defer></script>
+   <script src="Magnetometer.js" defer></script>
+   <script src="Pipe.js" defer></script>
+   <script src="Scale.js" defer></script>
+   <script src="graph.js" defer></script>
+   <script src="utils.js" defer></script>
+   <script src="simulation.js" defer></script>
+   <!-- CSS -->
+   <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+   <div class="text">
+      <div align="right">
+         <!-- <span>Contact:</span> -->
+         &nbsp;
+         <a href="mailto:praveen@hbcse.tifr.res.in" target="_blank">
+            <i class="material-icons" style="position:absolute; top:0px;">email</i>
+         </a>
+      </div>
+      <div class="container" style="width: 100%">
+         <div class="row">
+            <div class="col s12 l8">
+               <canvas style="border-bottom: 5px solid red" id="canvas"></canvas>
+            </div>
+            <div class="col s12 l3 push-l1">
+               <center>
+                  <p>
+                     Intergrid spacing: 1 cm
+                  </p>
+                  <p id="b-display"></p>
+                  <p style="padding: 10px; border: 2px solid red; background: black; display: none;" id="error-display">
+                     <b>Maximum magnetic field exceeded</b>
+                  </p>
+
+                  <span>Rotate mobile:</span>
+                  <input id="mob-angle" type="range" min="0" max="359" step="1" oninput="updateParams('mob-angle')"
+                     onchange="updateParams('mob-angle')">
+
+                  <span>Rotate magnet:</span>
+                  <input id="magnet-angle" type="range" min="0" max="359" step="1"
+                     oninput="updateParams('magnet-angle')" onchange="updateParams('magnet-angle')">
+
+                  <span>Rotate scale:</span>
+                  <input id="scale-angle" type="range" min="0" max="359" step="1" oninput="updateParams('scale-angle')"
+                     onchange="updateParams('scale-angle')">
+
+                  <span>Graph start time, t<sub>i</sub> (s):</span>
+                  <input id="simul-start-time-input" type="number" onchange="updateParams('simul-start-time-input')">
+
+                  <span>Graph end time, t<sub>f</sub> (s):</span>
+                  <input id="simul-end-time-input" type="number" onchange="updateParams('simul-end-time-input')">
+
+                  <br>
+                  <button class="btn purple darken-4" onclick="measureToggle()" id="measure-button">Start
+                     Measurement</button>
+                  <br> <br>
+                  <button class="btn purple darken-4" onclick="resetGraph()">Reset Graph</button>
+                  <br> <br>
+                  <button class="btn purple darken-4" onclick="dropMagnet()" id="drop-button" disabled>Drop</button>
+                  <button class="btn purple darken-4" onclick="resetMagnet()">Reset Positions</button>
+                  <br> <br>
+               </center>
+            </div>
+         </div>
+         <center>
+            <button class="btn purple darken-4" onclick="finer()" id="finer-button">2X Finer magnet movement</button>
+            <button class="btn purple darken-4" onclick="coarser()" id="coarser-button">2X Coarser magnet
+               movement</button>
+            <button class="btn purple darken-4" onclick="scaleToggle()" id="scale-button">Show Scale</button>
+         </center>
+         <h2>B<sub>w</sub> & B<sub>l</sub> vs t graph</h2>
+      </div>
+
+      <center>
+         <canvas id="graph-canvas"></canvas>
+      </center>
+      <br>
+      <hr>
+      <center>
+         <p>
+            This Simulation was developed by Chandan Relekar, Siddhant Mukherjee, Siddharth Tiwary, Charudutt Kadolkar,
+            and
+            Praveen Pathak for Asian Physics Olympaid-2022 which was held at Dehradun, India. The team can be contacted
+            <a href="mailto:praveen@hbcse.tifr.res.in" target="_blank">here</a>.
+            <br> <br>
+            Click <a href="https://github.com/SidM1811/pipe" target="_blank">here</a> to access the repository
+         </p>
+      </center>
+   </div>
+</body>
+
+</html>
